@@ -262,27 +262,27 @@ if page == "Prédiction":
             
         st.metric("Probabilité de défaut", f"{float(probabilite):.2%}")
 
-elif page == "Visualisation":
-    st.header("Visualisation des Données")
+# elif page == "Visualisation":
+#     st.header("Visualisation des Données")
     
-    # Exemple de graphiques (à adapter avec vos données réelles)
-    col1, col2 = st.columns(2)
+#     # Exemple de graphiques (à adapter avec vos données réelles)
+#     col1, col2 = st.columns(2)
     
-    with col1:
-        st.subheader("Distribution des Scores de Crédit")
-        # Création d'un graphique fictif
-        scores = np.random.normal(650, 100, 1000)
-        fig = px.histogram(scores, title="Distribution des Scores de Crédit")
-        st.plotly_chart(fig)
+#     with col1:
+#         st.subheader("Distribution des Scores de Crédit")
+#         # Création d'un graphique fictif
+#         scores = np.random.normal(650, 100, 1000)
+#         fig = px.histogram(scores, title="Distribution des Scores de Crédit")
+#         st.plotly_chart(fig)
     
-    with col2:
-        st.subheader("Taux de Défaut par Âge")
-        # Création d'un graphique fictif
-        ages = np.random.randint(18, 80, 1000)
-        defauts = np.random.binomial(1, 0.3, 1000)
-        df = pd.DataFrame({'Age': ages, 'Défaut': defauts})
-        fig = px.box(df, x='Défaut', y='Age', title="Âge vs Défaut")
-        st.plotly_chart(fig)
+#     with col2:
+#         st.subheader("Taux de Défaut par Âge")
+#         # Création d'un graphique fictif
+#         ages = np.random.randint(18, 80, 1000)
+#         defauts = np.random.binomial(1, 0.3, 1000)
+#         df = pd.DataFrame({'Age': ages, 'Défaut': defauts})
+#         fig = px.box(df, x='Défaut', y='Age', title="Âge vs Défaut")
+#         st.plotly_chart(fig)
 
 else:  # À propos
     st.header("À propos de l'Application")
