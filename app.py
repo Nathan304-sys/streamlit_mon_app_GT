@@ -81,13 +81,11 @@ def load_data(path):
 # # Charger image
 # image = Image.open("images/logo.png")
 
+@st.cache_data
 def load_data():
     path = os.path.join("data", "base_leasing_finale.xlsx")
     return pd.read_excel(path)
 base_leasing = load_data()
-
-
-
 
 col1, col2 = st.columns([1, 4])
 with col1:
@@ -105,6 +103,7 @@ if page == "Prédiction":
     st.header("Formulaire de Prédiction")
 
     # Fonctions d'encodage et de modélisation
+    @st.cache_data
     def encode2(df):
         categorical_columns = ['objet_credit_groupe', 'type', 'segment', 'profil_activite', 
                             'secteur_risque', 'forme_juridique', 'reseau', 'cat_age_entreprise', 'Retard']
@@ -135,7 +134,7 @@ if page == "Prédiction":
     
     with col1:
         st.markdown('<div class="section-header">Caractéristiques du Client</div>', unsafe_allow_html=True)
-        st.image("images/customer_icon.png", width=50)
+        st.image("images/customer_icon.png", width=100)
         
         # Variables catégorielles du client
     #     'code_client', 'reference_lettrage', 'n_echance', 'date_echeance',
@@ -185,7 +184,7 @@ if page == "Prédiction":
             "Âge de l'entreprise",
             ['20+ ans', '10-20 ans', '3-10 ans', '<3 ans']
         )
-        
+    
     with col2:
         st.markdown('<div class="section-header">Caractéristiques du Contrat</div>', unsafe_allow_html=True)
         st.image("https://img.icons8.com/color/96/000000/contract.png", width=100)
@@ -226,6 +225,7 @@ if page == "Prédiction":
     if st.button("Prédire le risque de défaut"):
         st.markdown("---")
         st.markdown("### Résultat de la Prédiction")
+        
         
         # Création du DataFrame de prédiction avec les valeurs saisies
         df_prediction = pd.DataFrame({"echa_impaye_avant":ech_impaye_avant, 'montant_credit':montant_credit,
