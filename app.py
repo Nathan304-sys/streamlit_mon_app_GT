@@ -17,9 +17,12 @@ import qrcode
 # rerun()
 import streamlit as st
 
+#pipreqs . --force
+
+
 
 # --- Authentification --- #
-VALID_USERNAME = os.environ.get("STREAMLIT_USERNAME", "admin")
+VALID_USERNAME = os.environ.get("STREAMLIT_USERNAME", "nathan_exaucee")
 VALID_PASSWORD = os.environ.get("STREAMLIT_PASSWORD", "afriland2025") # You can change this password!
 
 if "logged_in" not in st.session_state:
@@ -28,11 +31,9 @@ if "logged_in" not in st.session_state:
 if not st.session_state.logged_in:
     st.sidebar.empty() # Clear sidebar content for login page
     st.title("Connexion à l'Application")
-    st.markdown("""
-    <div style="text-align: center;">
-        <img src="https://www.afrilandfirstbank.com/sites/default/files/styles/large_image/public/2021-02/logo_afriland-first-bank-small.png?itok=W2X7Uq6A" alt="Afriland Logo" width="150">
-    </div>
-    """, unsafe_allow_html=True)
+    
+    st.image("images/afriland_logo.png", width=150) 
+   
     st.markdown("<h3 style=\"text-align: center; color: #cc0000;\">Accès sécurisé aux données bancaires</h3>", unsafe_allow_html=True)
     
     username = st.text_input("Nom d'utilisateur")
@@ -161,7 +162,8 @@ def load_images():
         "customer_icon": "images/customer_icon.png",
         "feature_importance": "images/feature_importance.png",
         "coefficient_importance": "images/coefficient_importance.png",
-        "nathan": "images/nathan.jpg"
+        "nathan": "images/nathan.jpg",
+        "exaucee": "images/exaucee.jpg"
     }
     for key, path in image_paths.items():
         try:
@@ -196,6 +198,11 @@ st.sidebar.title("Navigation")
 
 page = st.sidebar.radio("Choisir une section", ["Présentation des données", "Analyse des données", "Modélisation", "À propos"], key="page_selection")
 
+st.sidebar.markdown("---") # Add a separator
+if st.sidebar.button("Se déconnecter", help="Cliquez pour vous déconnecter de l'application."):
+    st.session_state.logged_in = False
+    st.rerun()
+
 #-------------------------------------Presentation des données -----------------------------------
 
 if page == "Présentation des données":
@@ -212,9 +219,9 @@ if page == "Présentation des données":
 
     col_stats1, col_stats2 = st.columns(2)
     with col_stats1:
-        st.metric(label="Total Clients Uniques", value=total_unique_clients,)
+        st.metric(label="Total Clients Uniques", value=total_unique_clients,help="Données collectées (octobre 2022–mars 2025)")
     with col_stats2:
-        st.metric(label="Total Contrats Uniques", value=total_unique_contracts)
+        st.metric(label="Total Contrats Uniques", value=total_unique_contracts, help="Données collectées (octobre 2022–mars 2025)")
 
     st.markdown("""
     <div class="section-header">Aperçu du Jeu de Données</div>
@@ -850,7 +857,7 @@ logistique sont, dans l’ordre, le cumul du taux de paiement, le nombre d'éch�
         st.markdown(
         f"""
         - 📧 Email:  <student.nsimouessa.dieuveil@issea-cemac.org> ou <nsimouessa@gmail.com>
-        - Linkedin:  https://www.linkedin.com/in/nsimouessa
+        - Linkedin:  https://www.linkedin.com/ Nathan Nsimouessa
         - Contact: +237 677128351 ou +242 069168487
         """,
         unsafe_allow_html=True,
@@ -867,13 +874,13 @@ logistique sont, dans l’ordre, le cumul du taux de paiement, le nombre d'éch�
     )
     col_im,col_ad=st.columns(2)
     with col_im:
-        st.image(images["customer_icon"], use_column_width=None)
+        st.image(images["exaucee"], use_column_width=None)
     with col_ad:
         st.markdown(
         f"""
-        - 📧 Email:  <missengue@gmail.com>
-        - Linkedin:  http://www.linkedin.com/in/f
-        - Contact: +237 
+        - 📧 Email:  <emissenguemoulombo@gmail.com>
+        - Linkedin:  http://www.linkedin.com/Missengue Exaucée
+        
         """,
         unsafe_allow_html=True,
     )
