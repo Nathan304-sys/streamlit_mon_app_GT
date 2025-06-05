@@ -8,3 +8,4 @@ Pillow>=9.0
 scipy>=1.9
 statsmodels>=0.13
 qrcode>=7.3
+XlsxWriter>=3.1
