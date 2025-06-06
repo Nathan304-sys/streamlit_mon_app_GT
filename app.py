@@ -263,8 +263,8 @@ elif page == "Analyse des données":
     <div class="section-header">Statistiques Descriptives des Échéances</div>
     """, unsafe_allow_html=True)
 
-    
-    st.dataframe(base_leasing[['reference_lettrage', 'montant_credit', 'total_echeance',
+    #'reference_lettrage',
+    st.dataframe(base_leasing[[ 'montant_credit', 'total_echeance',
        'capital_rembourse', 'nbre_ech',
        'taux_interet', 'nb_cpt', 'age_credit_jours', 'echa_impaye_avant',
        'cum_taux_paiement']].describe()) #base_leasing.describe() .groupby("reference_lettrage")
@@ -279,19 +279,19 @@ elif page == "Analyse des données":
     col1, col2= st.columns(2)
 
     with col1:
-        quantitative_cols = base_leasing.select_dtypes(include=np.number).columns.tolist()
-        if 'statut' in quantitative_cols:
-            quantitative_cols.remove('statut')
-        if 'code_client' in quantitative_cols:
-            quantitative_cols.remove('code_client')
-        if 'reference_lettrage' in quantitative_cols:
-            quantitative_cols.remove('reference_lettrage')
-        if 'n_echance' in quantitative_cols:
-            quantitative_cols.remove('n_echance')
+        # quantitative_cols = base_leasing.select_dtypes(include=np.number).columns.tolist()
+        # if 'statut' in quantitative_cols:
+        #     quantitative_cols.remove('statut')
+        # if 'code_client' in quantitative_cols:
+        #     quantitative_cols.remove('code_client')
+        # if 'reference_lettrage' in quantitative_cols:
+        #     quantitative_cols.remove('reference_lettrage')
+        # if 'n_echance' in quantitative_cols:
+        #     quantitative_cols.remove('n_echance')
 
         selected_quantitative_var = st.selectbox(
             "Sélectionnez une variable quantitative pour le Boxplot",
-            quantitative_cols
+            numerical_features
         )
     
         if selected_quantitative_var:
@@ -316,19 +316,19 @@ elif page == "Analyse des données":
 
     
     with col2:
-        qualitative_cols = base_leasing.select_dtypes(include='object').columns.tolist()
-        if 'statut' in qualitative_cols: # 'statut' might be object type if not encoded yet
-            qualitative_cols.remove('statut')
-        if 'code_client' in qualitative_cols:
-            qualitative_cols.remove('code_client')
-        if 'reference_lettrage' in qualitative_cols:
-            qualitative_cols.remove('reference_lettrage')
-        if 'Retard' in qualitative_cols:
-            qualitative_cols.remove('Retard')
+        # qualitative_cols = base_leasing.select_dtypes(include='object').columns.tolist()
+        # if 'statut' in qualitative_cols: # 'statut' might be object type if not encoded yet
+        #     qualitative_cols.remove('statut')
+        # if 'code_client' in qualitative_cols:
+        #     qualitative_cols.remove('code_client')
+        # if 'reference_lettrage' in qualitative_cols:
+        #     qualitative_cols.remove('reference_lettrage')
+        # if 'Retard' in qualitative_cols:
+        #     qualitative_cols.remove('Retard')
 
         selected_qualitative_var = st.selectbox(
             "Sélectionnez une variable qualitative pour le Bar Chart",
-            qualitative_cols
+            categorical_features
         )
 
         if selected_qualitative_var:
@@ -357,7 +357,7 @@ elif page == "Analyse des données":
         st.subheader("Variables Quantitatives vs Statut")
         selected_quantitative_var_statut = st.selectbox(
             "Sélectionnez une variable quantitative pour la comparaison avec le statut",
-            quantitative_cols, key="quant_vs_statut"
+            numerical_features, key="quant_vs_statut"
         )
 
         if selected_quantitative_var_statut:
@@ -370,7 +370,7 @@ elif page == "Analyse des données":
         st.subheader("Variables Qualitatives vs Statut")
         selected_qualitative_var_statut = st.selectbox(
             "Sélectionnez une variable qualitative pour la comparaison avec le statut",
-            qualitative_cols, key="qual_vs_statut"
+            categorical_features, key="qual_vs_statut"
         )
 
         if selected_qualitative_var_statut:
@@ -462,7 +462,7 @@ elif page == "Analyse des données":
     """, unsafe_allow_html=True)
 
     # For correlation matrix, we need only numerical columns
-    numeric_df_corr = base_leasing[quantitative_cols].corr()
+    numeric_df_corr = base_leasing[numerical_features].corr()
     fig_corr = px.imshow(numeric_df_corr, text_auto=True, aspect="auto",
                          title="Matrice de Corrélation des Variables Quantitatives",
                          color_continuous_scale="RdBu")
