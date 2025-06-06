@@ -112,21 +112,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 ################################################## En tete de l'application  ####################################
-# Titre de l'application avec logo
-@st.cache_data
-def load_data(path):
-    return pd.read_csv(path) #pd.read_excel(path, engine='openpyxl')
-#                               pd.read_csv("data/leasing_filtered.csv")
 
-
-# # Charger fichier Excel
-# df = pd.read_excel("data/donnees.xlsx")
-
-# # Charger modèle
-# model = joblib.load("modeles/modele_final.pkl")
-
-# # Charger image
-# image = Image.open("images/logo.png")
 
 # BASE DE DONNEES
 categorical_features= ['objet_credit_groupe', 'type', 'segment','profil_activite', 'secteur_risque', 'forme_juridique', 'reseau', 'cat_age_entreprise', 'statut']
@@ -139,10 +125,11 @@ numerical_features=['montant_credit', 'total_echeance',
 # len(numerical_features)
 # leasing_filtered.head(2)
 
+#Chargement de la base de données
 @st.cache_data
 def load_data():
-    path = os.path.join("data", "leasing_filtered.xlsx")  #base_leasing_finale.xlsx
-    return  pd.read_csv(path) #pd.read_excel(path)
+    path = os.path.join("data", "leasing_filtered.csv")  #base_leasing_finale.xlsx
+    return  pd.read_csv(path,encoding='latin1') #pd.read_excel(path)
 base_leasing = load_data()
 
 if 'Unnamed: 0' in base_leasing.columns:
