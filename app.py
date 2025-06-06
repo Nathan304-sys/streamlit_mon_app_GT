@@ -129,7 +129,7 @@ numerical_features=['montant_credit', 'total_echeance',
 #pd.read_csv(path,encoding='utf-8', sep=';')
 @st.cache_data
 def load_data():
-    path = os.path.join("data", "leasing_filtered_1.csv")  #base_leasing_finale.xlsx
+    path = os.path.join("data", "leasing_filtered_f.csv")  #base_leasing_finale.xlsx
     return  pd.read_csv(path,sep=';', encoding='utf-8' ) #pd.read_excel(path)
 base_leasing = load_data()
 
