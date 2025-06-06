@@ -13,7 +13,11 @@ import io
 from scipy.stats import chi2_contingency
 import statsmodels.api as sm
 import qrcode
-import openpyxl
+try:
+    import openpyxl
+except ImportError:
+    st.error("Le package openpyxl n'est pas installé. Veuillez l'installer avec la commande: pip install openpyxl")
+    st.stop()
 import streamlit as st
 
 
