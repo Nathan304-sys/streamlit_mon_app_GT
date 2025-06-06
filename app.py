@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -15,6 +14,7 @@ import statsmodels.api as sm
 import qrcode
 try:
     import openpyxl
+    _ = openpyxl  # Accès explicite au module pour le linter
 except ImportError:
     st.error("Le package openpyxl n'est pas installé. Veuillez l'installer avec la commande: pip install openpyxl")
     st.stop()
@@ -115,7 +115,9 @@ st.markdown("""
 # Titre de l'application avec logo
 @st.cache_data
 def load_data(path):
-    return pd.read_excel(path)
+    return pd.read_csv(path) #pd.read_excel(path, engine='openpyxl')
+#                               pd.read_csv("data/leasing_filtered.csv")
+
 
 # # Charger fichier Excel
 # df = pd.read_excel("data/donnees.xlsx")
@@ -140,7 +142,7 @@ numerical_features=['montant_credit', 'total_echeance',
 @st.cache_data
 def load_data():
     path = os.path.join("data", "leasing_filtered.xlsx")  #base_leasing_finale.xlsx
-    return pd.read_excel(path)
+    return  pd.read_csv(path) #pd.read_excel(path)
 base_leasing = load_data()
 
 if 'Unnamed: 0' in base_leasing.columns:
@@ -800,16 +802,16 @@ caractéristiques des contrats et transactions bancaires).
 
 Les techniques employées comprennent des
 analyses univariées et bivariées, des tests d'indépendances pour évaluer les liens entre
-variables explicatives et statut de paiement, ainsi qu’une modélisation par apprentissage automatique
+variables explicatives et statut de paiement, ainsi qu'une modélisation par apprentissage automatique
 (régression logistique, Random Forest, XGBoost, LightGBM) pour prédire la probabilité de défaut à la
 prochaine échéance 
 
 Nous avons testé quatre algorithmes (régression logistique, Random Forest, XGBoost, LightGBM) en
 traitant le déséquilibre (46 % impayés vs 54 % payés) via une partition train/test (80 %/20 %) et
-normalisation. La régression logistique s’est révélée la plus stable (AUC ≈ 0,93, accuracy ≈ 90 %) sans
-surapprentissage, tandis que les modèles d’ensemble, bien qu’obtenant 100 % de précision en
-apprentissage, souffraient d’un surapprentissage marqué. Les facteurs les plus influents dans la régression
-logistique sont, dans l’ordre, le cumul du taux de paiement, le nombre d'échéance, l'age du crédit puis le montant
+normalisation. La régression logistique s'est révélée la plus stable (AUC ≈ 0,93, accuracy ≈ 90 %) sans
+surapprentissage, tandis que les modèles d'ensemble, bien qu'obtenant 100 % de précision en
+apprentissage, souffraient d'un surapprentissage marqué. Les facteurs les plus influents dans la régression
+logistique sont, dans l'ordre, le cumul du taux de paiement, le nombre d'échéance, l'age du crédit puis le montant
 ** 
     """)
 
