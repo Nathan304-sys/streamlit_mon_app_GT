@@ -129,7 +129,7 @@ numerical_features=['montant_credit', 'total_echeance',
 @st.cache_data
 def load_data():
     path = os.path.join("data", "leasing_filtered.csv")  #base_leasing_finale.xlsx
-    return  pd.read_csv(path,encoding='utf-8') #pd.read_excel(path)
+    return  pd.read_csv(path,encoding='utf-8', sep=';') #pd.read_excel(path)
 base_leasing = load_data()
 
 if 'Unnamed: 0' in base_leasing.columns:
