@@ -12,12 +12,12 @@ import io
 from scipy.stats import chi2_contingency
 import statsmodels.api as sm
 import qrcode
-try:
-    import openpyxl
-    _ = openpyxl  # Accès explicite au module pour le linter
-except ImportError:
-    st.error("Le package openpyxl n'est pas installé. Veuillez l'installer avec la commande: pip install openpyxl")
-    st.stop()
+# try:
+#     import openpyxl
+#     _ = openpyxl  # Accès explicite au module pour le linter
+# except ImportError:
+#     st.error("Le package openpyxl n'est pas installé. Veuillez l'installer avec la commande: pip install openpyxl")
+#     st.stop()
 import streamlit as st
 
 
