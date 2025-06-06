@@ -129,7 +129,7 @@ numerical_features=['montant_credit', 'total_echeance',
 #pd.read_csv(path,encoding='utf-8', sep=';')
 @st.cache_data
 def load_data():
-    path = os.path.join("data", "leasing_filtered_f.csv")
+    path = os.path.join("data", "leasing_filtered.csv")
     try:
         return pd.read_csv(path, sep=';', encoding='utf-8')
     except UnicodeDecodeError:
