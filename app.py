@@ -454,7 +454,7 @@ elif page == "Analyse des données":
                 height=500,
                 margin=dict(l=50, r=50, t=80, b=50),
                 yaxis=dict(range=[0, 100]),
-                xaxis_tickangle=-45  # Inclinaison des labels en abscisse
+                xaxis_tickangle=45  # Inclinaison des labels en abscisse
             )
 
             # Texte sur les barres
