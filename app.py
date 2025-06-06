@@ -13,11 +13,9 @@ import io
 from scipy.stats import chi2_contingency
 import statsmodels.api as sm
 import qrcode
-# from streamlit.runtime.scriptrunner import rerun
-# rerun()
+import openpyxl
 import streamlit as st
 
-#pipreqs . --force
 
 
 
@@ -946,3 +944,4 @@ st.markdown("© 2025 Afriland First Bank - Application de Prédiction des Défau
 # git add .
 # git commit -m "Mes nouvelles modifications"
 # git push
+#pipreqs . --force
