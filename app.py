@@ -129,9 +129,20 @@ numerical_features=['montant_credit', 'total_echeance',
 #pd.read_csv(path,encoding='utf-8', sep=';')
 @st.cache_data
 def load_data():
-    path = os.path.join("data", "leasing_filtered_f.csv")  #base_leasing_finale.xlsx
-    return  pd.read_csv(path,sep=';', encoding='utf-8' ) #pd.read_excel(path)
+    path = os.path.join("data", "leasing_filtered_f.csv")
+    try:
+        return pd.read_csv(path, sep=';', encoding='utf-8')
+    except UnicodeDecodeError:
+        # Try with different encoding if utf-8 fails
+        return pd.read_csv(path, sep=';', encoding='latin-1')
+    except Exception as e:
+        st.error(f"Erreur lors du chargement des données: {str(e)}")
+        return None
+
 base_leasing = load_data()
+if base_leasing is None:
+    st.error("Impossible de charger les données. Veuillez vérifier le fichier et son format.")
+    st.stop()
 
 if 'Unnamed: 0' in base_leasing.columns:
     base_leasing=base_leasing.drop('Unnamed: 0', axis=1)
