@@ -382,38 +382,89 @@ elif page == "Analyse des données":
         )
 
         if selected_qualitative_var_statut:
-            # Calculate percentages for each category
-            value_counts = pd.crosstab(base_leasing[selected_qualitative_var_statut], 
-                                     base_leasing['statut'], 
-                                     normalize='index') * 100
+            # # Calculate percentages for each category
+            # value_counts = pd.crosstab(base_leasing[selected_qualitative_var_statut], 
+            #                          base_leasing['statut'], 
+            #                          normalize='index') * 100
             
-            # Create bar chart with improved readability
-            fig_hist_statut = px.bar(value_counts, 
-                                   title=f"Profil de {selected_qualitative_var_statut} par Statut de Paiement",
-                                   color_discrete_map={'Payé': '#000000', 'Impayé': '#cc0000'},
-                                   barmode='group',
-                                   text_auto='.1f')  # Automatically add percentage labels
+            # # Create bar chart with improved readability
+            # fig_hist_statut = px.bar(value_counts, 
+            #                        title=f"Profil de {selected_qualitative_var_statut} par Statut de Paiement",
+            #                        color_discrete_map={'Payé': '#000000', 'Impayé': '#cc0000'},
+            #                        barmode='group',
+            #                        text_auto='.1f')  # Automatically add percentage labels
             
-            # Update layout for better visualization
+            # # Update layout for better visualization
+            # fig_hist_statut.update_layout(
+            #     yaxis_title="Pourcentage (%)",
+            #     xaxis_title=selected_qualitative_var_statut,
+            #     showlegend=True,
+            #     legend_title="Statut de Paiement",
+            #     height=500,  # Increased height for better readability
+            #     margin=dict(l=50, r=50, t=80, b=50),
+            #     yaxis=dict(range=[0, 100])  # Force y-axis to go from 0 to 100%
+            # )
+            
+            # # Customize text labels
+            # fig_hist_statut.update_traces(
+            #     texttemplate='%{y:.1f}%',
+            #     textposition='outside',
+            #     textfont_size=12,
+            #     textfont_color='black'
+                        # )
+                        
+                        # st.plotly_chart(fig_hist_statut, use_container_width=True)
+             
+
+            # Table de contingence normalisée par ligne (profil colonne)
+            value_counts = pd.crosstab(
+                base_leasing[selected_qualitative_var_statut],
+                base_leasing['statut'],
+                normalize='index'
+            ) * 100
+
+            # Remettre à plat pour que Plotly puisse lire (reset index + melt)
+            value_counts_reset = value_counts.reset_index().melt(
+                id_vars=selected_qualitative_var_statut,
+                value_name='Pourcentage',
+                var_name='Statut'
+            )
+
+            # Graphique à barres empilées 100%
+            fig_hist_statut = px.bar(
+                value_counts_reset,
+                x=selected_qualitative_var_statut,
+                y='Pourcentage',
+                color='Statut',
+                title=f"Profil de {selected_qualitative_var_statut} par Statut de Paiement",
+                text_auto='.1f',
+                color_discrete_map={'Payé': '#000000', 'Impayé': '#cc0000'},
+            )
+
+            # Personnalisation
             fig_hist_statut.update_layout(
+                barmode='stack',
                 yaxis_title="Pourcentage (%)",
                 xaxis_title=selected_qualitative_var_statut,
                 showlegend=True,
                 legend_title="Statut de Paiement",
-                height=500,  # Increased height for better readability
+                height=500,
                 margin=dict(l=50, r=50, t=80, b=50),
-                yaxis=dict(range=[0, 100])  # Force y-axis to go from 0 to 100%
+                yaxis=dict(range=[0, 100]),
+                xaxis_tickangle=-45  # Inclinaison des labels en abscisse
             )
-            
-            # Customize text labels
+
+            # Texte sur les barres
             fig_hist_statut.update_traces(
                 texttemplate='%{y:.1f}%',
-                textposition='outside',
+                textposition='inside',
                 textfont_size=12,
-                textfont_color='black'
+                textfont_color='white'
             )
-            
+
+            # Affichage dans Streamlit
             st.plotly_chart(fig_hist_statut, use_container_width=True)
+
     st.markdown("""
     <div class="section-header">Corrélation des Variables</div>
     """, unsafe_allow_html=True)
