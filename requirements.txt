@@ -7,8 +7,7 @@ joblib>=1.2
 Pillow>=9.0
 statsmodels==0.13.5
 scipy==1.10.1
-qrcode>=7.3
-XlsxWriter>=3.1
+
 
 
 
