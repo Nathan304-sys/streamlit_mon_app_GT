@@ -23,33 +23,33 @@ import streamlit as st
 
 
 
-# --- Authentification --- #
-VALID_USERNAME = os.environ.get("STREAMLIT_USERNAME", "nathan_exaucee")
-VALID_PASSWORD = os.environ.get("STREAMLIT_PASSWORD", "afriland2025") # You can change this password!
+# # --- Authentification --- #
+# VALID_USERNAME = os.environ.get("STREAMLIT_USERNAME", "nathan_exaucee")
+# VALID_PASSWORD = os.environ.get("STREAMLIT_PASSWORD", "afriland2025") # You can change this password!
 
-if "logged_in" not in st.session_state:
-    st.session_state.logged_in = False
+# if "logged_in" not in st.session_state:
+#     st.session_state.logged_in = False
 
-if not st.session_state.logged_in:
-    st.sidebar.empty() # Clear sidebar content for login page
-    st.title("Connexion à l'Application")
+# if not st.session_state.logged_in:
+#     st.sidebar.empty() # Clear sidebar content for login page
+#     st.title("Connexion à l'Application")
     
-    st.image("images/afriland_logo.png", width=150) 
+#     st.image("images/afriland_logo.png", width=150) 
    
-    st.markdown("<h3 style=\"text-align: center; color: #cc0000;\">Accès sécurisé aux données bancaires</h3>", unsafe_allow_html=True)
+#     st.markdown("<h3 style=\"text-align: center; color: #cc0000;\">Accès sécurisé aux données bancaires</h3>", unsafe_allow_html=True)
     
-    username = st.text_input("Nom d'utilisateur")
-    password = st.text_input("Mot de passe", type="password")
+#     username = st.text_input("Nom d'utilisateur")
+#     password = st.text_input("Mot de passe", type="password")
 
-    if st.button("Se connecter", help="Cliquez pour vous connecter à l'application"): 
-        if username == VALID_USERNAME and password == VALID_PASSWORD:
-            st.session_state.logged_in = True
-            st.success("Connexion réussie!")
-            st.rerun() # Rerun to display the app
-        else:
-            st.error("Nom d'utilisateur ou mot de passe incorrect.")
-    st.stop() # Stop execution until logged in
-# --- Fin Authentification --- #
+#     if st.button("Se connecter", help="Cliquez pour vous connecter à l'application"): 
+#         if username == VALID_USERNAME and password == VALID_PASSWORD:
+#             st.session_state.logged_in = True
+#             st.success("Connexion réussie!")
+#             st.rerun() # Rerun to display the app
+#         else:
+#             st.error("Nom d'utilisateur ou mot de passe incorrect.")
+#     st.stop() # Stop execution until logged in
+# # --- Fin Authentification --- #
 
 # Configuration de la page
 st.set_page_config(
