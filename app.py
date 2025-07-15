@@ -11,7 +11,7 @@ import base64
 import io
 from scipy.stats import chi2_contingency
 import statsmodels.api as sm
-import qrcode
+#import qrcode
 # try:
 #     import openpyxl
 #     _ = openpyxl  # Accès explicite au module pour le linter
