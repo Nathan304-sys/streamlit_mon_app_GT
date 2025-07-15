@@ -62,11 +62,27 @@ st.set_page_config(
 # Style CSS personnalisé Afriland First Bank
 st.markdown("""
     <style>
-    .main {
-        padding: 2rem;
-        background-color: #1a1a1a;
-        color: white;
+    /* Force le fond de la page principale en noir */
+    body, .stApp {
+        background-color: #1a1a1a !important;
+        color: white !important;
     }
+    /* Pour le conteneur principal Streamlit */
+    div[data-testid="stAppViewContainer"] {
+        background-color: #1a1a1a !important;
+    }
+    /* Pour le contenu principal */
+    div[data-testid="stAppViewBlockContainer"] {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
+    /* Pour la sidebar */
+    div[data-testid="stSidebar"] {
+        background-color: #2a2a2a !important;
+        padding: 1rem;
+        color: white !important;
+    }
+    /* Boutons personnalisés */
     .stButton>button {
         width: 100%;
         background-color: #cc0000;
@@ -82,6 +98,7 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+    /* En-tête de section */
     .section-header {
         color: #cc0000;
         font-size: 24px;
@@ -90,18 +107,16 @@ st.markdown("""
         padding-bottom: 0.5rem;
         border-bottom: 2px solid #cc0000;
     }
+    /* Inputs */
     .stSelectbox, .stNumberInput, .stSlider {
         background-color: transparent;
         color: white;
     }
-    div[data-testid="stSidebar"] {
-        background-color: #2a2a2a;
-        padding: 1rem;
-        color: white;
-    }
+    /* Markdown */
     .stMarkdown {
         color: white;
     }
+    /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
         background-color: #2a2a2a;
     }
@@ -110,6 +125,60 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
+
+   # """, unsafe_allow_html=True)
+
+
+# st.markdown("""
+#     <style>
+#     .main {
+#         padding: 2rem;
+#         background-color: #1a1a1a;
+#         color: white;
+#     }
+#     .stButton>button {
+#         width: 100%;
+#         background-color: #cc0000;
+#         color: white;
+#         padding: 0.8rem 1rem;
+#         border: none;
+#         border-radius: 8px;
+#         font-weight: bold;
+#         transition: all 0.3s ease;
+#     }
+#     .stButton>button:hover {
+#         background-color: #990000;
+#         transform: translateY(-2px);
+#         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+#     }
+#     .section-header {
+#         color: #cc0000;
+#         font-size: 24px;
+#         font-weight: bold;
+#         margin-bottom: 1rem;
+#         padding-bottom: 0.5rem;
+#         border-bottom: 2px solid #cc0000;
+#     }
+#     .stSelectbox, .stNumberInput, .stSlider {
+#         background-color: transparent;
+#         color: white;
+#     }
+#     div[data-testid="stSidebar"] {
+#         background-color: #2a2a2a;
+#         padding: 1rem;
+#         color: white;
+#     }
+#     .stMarkdown {
+#         color: white;
+#     }
+#     .stTabs [data-baseweb="tab-list"] {
+#         background-color: #2a2a2a;
+#     }
+#     .stTabs [data-baseweb="tab-panel"] {
+#         background-color: #2a2a2a;
+#     }
+#     </style>
+#     """, unsafe_allow_html=True)
 
 ################################################## En tete de l'application  ####################################
 
