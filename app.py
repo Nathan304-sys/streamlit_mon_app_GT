@@ -110,11 +110,11 @@ st.markdown("""
     /* Inputs */
     .stSelectbox, .stNumberInput, .stSlider {
         background-color: transparent;
-        color: black;
+        color: white;
     } 
     /* Markdown */
     .stMarkdown {
-        color: black; 
+        color: white; 
     }
     /* Tabs */
     .stTabs [data-baseweb="tab-list"] {
