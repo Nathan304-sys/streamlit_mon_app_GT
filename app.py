@@ -236,13 +236,13 @@ if page == "Présentation des données":
     """, unsafe_allow_html=True)
     
     # Function to convert dataframe to excel for download
-    def to_excel(df):
-        output = io.BytesIO()
-        writer = pd.ExcelWriter(output, engine='xlsxwriter')
-        df.to_excel(writer, index=False, sheet_name='Sheet1')
-        writer.close()
-        processed_data = output.getvalue()
-        return processed_data
+    # def to_excel(df):
+    #     output = io.BytesIO()
+    #     writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    #     df.to_excel(writer, index=False, sheet_name='Sheet1')
+    #     writer.close()
+    #     processed_data = output.getvalue()
+    #     return processed_data
 
     # Add a buffer for the excel file download
     # Ensure that `io` is imported at the top of the file along with other imports
