@@ -134,7 +134,7 @@ st.markdown("""
     .main {
         padding: 2rem;
         background-color: #1a1a1a;
-        color: white;
+        color: black;
     }
     .stButton>button {
         width: 100%;
