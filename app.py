@@ -256,14 +256,14 @@ if page == "Présentation des données":
         help="Téléchargez le jeu de données complet au format CSV"
     )
 
-    excel_data = to_excel(base_leasing)
-    st.download_button(
-        label="Télécharger les données au format Excel",
-        data=excel_data,
-        file_name='leasing_filtered.xlsx',
-        mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        help="Téléchargez le jeu de données complet au format Excel"
-    )
+    #excel_data = to_excel(base_leasing)
+    # st.download_button(
+    #     label="Télécharger les données au format Excel",
+    #     data=excel_data,
+    #     file_name='leasing_filtered.xlsx',
+    #     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    #     help="Téléchargez le jeu de données complet au format Excel"
+    # )
 
 #--------------------------------------------- Analyses des données ---------------------------------------------
 
