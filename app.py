@@ -865,23 +865,23 @@ logistique sont, dans l'ordre, le cumul du taux de paiement, le nombre d'échéa
     # Remplacez cette URL par l'URL de déploiement de votre application si elle n'est pas locale
     app_url = "http://localhost:8501"
 
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(app_url)
-    qr.make(fit=True)
+    # qr = qrcode.QRCode(
+    #     version=1,
+    #     error_correction=qrcode.constants.ERROR_CORRECT_L,
+    #     box_size=10,
+    #     border=4,
+    # )
+    # qr.add_data(app_url)
+    # qr.make(fit=True)
 
-    img = qr.make_image(fill_color="black", back_color="white")
+    # img = qr.make_image(fill_color="black", back_color="white")
     
     # Convertir l'image PIL en bytes pour Streamlit
-    buf = io.BytesIO()
-    img.save(buf, format="PNG")
-    byte_im = buf.getvalue()
+    # buf = io.BytesIO()
+    # img.save(buf, format="PNG")
+    # byte_im = buf.getvalue()
 
-    st.image(byte_im, caption=f"QR Code pour l'URL: {app_url}", width=200)
+    # st.image(byte_im, caption=f"QR Code pour l'URL: {app_url}", width=200)
         # use_container_width 
 
 
